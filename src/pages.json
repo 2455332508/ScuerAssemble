@@ -23,10 +23,14 @@
 			"style": {
 				"navigationBarTitleText": "游客首页"
 			}
+		},
+		{
+			"path": "pages/my/myIndex",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
 		}
 	],
-
-	
 
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
