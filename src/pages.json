@@ -1,0 +1,37 @@
+{
+	"pages": [ 
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/register/index",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path": "pages/register/info",
+			"style": {
+				"navigationBarTitleText": "完善信息"
+			}
+		},
+		{
+			"path": "pages/home/visitorIndex",
+			"style": {
+				"navigationBarTitleText": "游客首页"
+			}
+		}
+	],
+
+	
+
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "川大集合吧",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}
