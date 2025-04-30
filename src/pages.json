@@ -25,26 +25,27 @@
 			}
 		},
 		{
-			"path": "pages/admin/mainPage1",
-			"style": {
-			"navigationStyle": "custom",  
-			"navigationBarTitleText": "",
-			"app-plus": {
-			"titleNView": false  
-        }
-      }	
-		
-		}
+			"path": "pages/admin/mainPage1"
+      	},
+		{
+			"path": "pages/admin/publish"
+		}	
 	],
-
-	
-
-
 
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "川大集合吧",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"titleNView": false  
+		}
+	},
+
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+		}
 	}
 }

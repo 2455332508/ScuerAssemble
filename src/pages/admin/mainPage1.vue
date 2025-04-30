@@ -123,7 +123,7 @@ export default {
     },
     goToPublish() {
       uni.navigateTo({
-        url: '/pages/publish/publish'
+        url: './publish'
       })
     }
   }
