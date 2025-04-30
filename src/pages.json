@@ -1,44 +1,56 @@
 {
-	"pages": [ 
+	"pages": [
 		{
-			"path": "pages/login/index",
+			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "登录"
 			}
 		},
 		{
-			"path": "pages/register/index",
+			"path": "pages/register/register",
 			"style": {
 				"navigationBarTitleText": "注册"
 			}
 		},
 		{
-			"path": "pages/register/info",
+			"path": "pages/home/home",
 			"style": {
-				"navigationBarTitleText": "完善信息"
+				"navigationBarTitleText": "首页"
 			}
 		},
 		{
-			"path": "pages/home/visitorIndex",
+			"path": "pages/admin/admin",
 			"style": {
-				"navigationBarTitleText": "游客首页"
+				"navigationBarTitleText": "管理员"
 			}
 		},
 		{
-			"path": "pages/admin/mainPage1"
-      	},
+			"path": "pages/about/aboutUs",
+			"style": {
+				"navigationBarTitleText": "关于我们"
+			}
+		},
 		{
-			"path": "pages/admin/publish"
-		}	
+			"path": "pages/about/privacy",
+			"style": {
+				"navigationBarTitleText": "隐私政策"
+			}
+		},
+		{
+			"path": "pages/about/specification",
+			"style": {
+				"navigationBarTitleText": "使用规范"
+			}
+		}
 	],
 
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "川大集合吧",
+		"navigationBarTitleText": "SCU",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"app-plus": {
-			"titleNView": false  
+			"titleNView": false
 		}
 	},
 

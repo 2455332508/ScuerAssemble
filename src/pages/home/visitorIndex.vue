@@ -139,10 +139,10 @@ export default {
       page: 1,
       pageSize: 10,
       tabs: [
-        { key: 'home', name: '首页', icon: 'home' },
-        { key: 'message', name: '消息', icon: 'chat' },
-        { key: 'discover', name: '发现', icon: 'search' },
-        { key: 'my', name: '我的', icon: 'person' }
+        { key: 'back', name: '返回上一级', icon: 'home' },
+        { key: 'login', name: '返回登录界面', icon: 'person' },
+        { key: 'navigation', name: '校内导航', icon: 'location' },
+        { key: 'about', name: '关于我们', icon: 'info' }
       ]
     }
   },
@@ -161,10 +161,12 @@ export default {
   methods: {
     updateTime() {
       const now = new Date()
-      const hours = now.getHours().toString().padStart(2, '0')
-      const minutes = now.getMinutes().toString().padStart(2, '0')
-      const seconds = now.getSeconds().toString().padStart(2, '0')
-      this.currentTime = `${hours}:${minutes}:${seconds}`
+      const year = now.getFullYear()
+      const month = (now.getMonth() + 1).toString().padStart(2, '0')
+      const day = now.getDate().toString().padStart(2, '0')
+      const weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+      const weekday = weekdays[now.getDay()]
+      this.currentTime = `${year}年${month}月${day}日 ${weekday}`
     },
     changeSort(type) {
       if (this.currentSort === type) return
@@ -217,11 +219,39 @@ export default {
     switchTab(key) {
       if (this.currentTab === key) return
       this.currentTab = key
-      // 预留tab切换接口
-      uni.showToast({
-        title: '功能开发中',
-        icon: 'none'
-      })
+      
+      switch (key) {
+        case 'back':
+          uni.navigateBack({
+            delta: 1,
+            fail: () => {
+              uni.showToast({
+                title: '已经是第一页了',
+                icon: 'none'
+              })
+            }
+          })
+          break
+          
+        case 'login':
+          uni.redirectTo({
+            url: '/pages/login/index'
+          })
+          break
+          
+        case 'navigation':
+          uni.showToast({
+            title: '校内导航功能开发中',
+            icon: 'none'
+          })
+          break
+          
+        case 'about':
+        uni.redirectTo({
+            url: '/pages/about/aboutUs'
+          })
+          break
+      }
     },
     onPostClick(post) {
       // 预留帖子点击接口
