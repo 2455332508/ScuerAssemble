@@ -25,12 +25,21 @@
 			}
 		},
 		{
-			"path": "pages/my/myIndex",
+			"path": "pages/admin/mainPage1",
 			"style": {
-				"navigationBarTitleText": "我的"
-			}
+			"navigationStyle": "custom",  
+			"navigationBarTitleText": "",
+			"app-plus": {
+			"titleNView": false  
+        }
+      }	
+		
 		}
 	],
+
+	
+
+
 
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

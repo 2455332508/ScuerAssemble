@@ -99,6 +99,10 @@ export default {
       })
     },
     handleAdminLogin() {
+      uni.navigateTo({
+        url: '../admin/mainPage1'
+      })
+      /* 
       if (!this.validateForm()) return
       console.log(this.account, this.password)
       // 处理管理员登录逻辑
@@ -133,6 +137,7 @@ export default {
           })
         }
       })
+      */
     },
     handleVisitorAccess() {
       // 直接跳转到主页面
