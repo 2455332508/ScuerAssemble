@@ -1,6 +1,6 @@
 {
-    "name" : "",
-    "appid" : "",
+    "name" : "SCU",
+    "appid" : "__UNI__DF1003C",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -43,7 +43,16 @@
             /* ios打包配置 */
             "ios" : {},
             /* SDK配置 */
-            "sdkConfigs" : {}
+            "sdkConfigs" : {
+                "geolocation" : {
+                    "amap" : {
+                        "name" : "",
+                        "__platform__" : [  "android" ],
+                        
+                        "appkey_android" : "7970d73db61e3c5943f9708e737244e1"
+                    }
+                }
+            }
         }
     },
     /* 快应用特有相关 */
@@ -65,8 +74,8 @@
     "mp-toutiao" : {
         "usingComponents" : true
     },
-    "uniStatistics": {  
-        "enable": false
+    "uniStatistics" : {
+        "enable" : false
     },
     "vueVersion" : "3"
 }

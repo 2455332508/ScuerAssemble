@@ -3,7 +3,8 @@
         {
             "path": "pages/login/index",
             "style": {
-                "navigationBarTitleText": "登录"
+                "navigationBarTitleText": "登录",
+                "navigationStyle": "custom"
             }
         },
         {
@@ -12,7 +13,6 @@
                 "navigationBarTitleText": "注册"
             }
         },
-
         {
             "path": "pages/register/info",
             "style": {
@@ -26,8 +26,16 @@
             }
         },
         {
-            "path": "pages/admin/mainPage1"
-        
+            "path": "pages/admin/mainPage1",
+            "style": {
+                "navigationBarTitleText": "管理员主页"
+            }
+        },
+        {
+            "path": "pages/home/studentIndex",
+            "style": {
+                "navigationBarTitleText": "学生主页"
+            }
         },
         {
             "path": "pages/about/aboutUs",
@@ -52,6 +60,24 @@
             "style": {
                 "navigationBarTitleText": "发布"
             }
+        },
+        {
+            "path": "pages/about/scuView",
+            "style": {
+                "navigationBarTitleText": "川大风采"
+            }
+        },
+        {
+            "path": "pages/about/contactUs",
+            "style": {
+                "navigationBarTitleText": "联系我们"
+            }
+        },
+        {
+            "path": "pages/map/Map",
+            "style": {
+                "navigationBarTitleText": "地图"
+            }
         }
     ],
 
@@ -70,5 +96,14 @@
         "custom": {
             "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
         }
+    },
+    "condition": {
+        "current": 0,
+        "list": [
+            {
+                "name": "登录页",
+                "path": "pages/login/index"
+            }
+        ]
     }
 }

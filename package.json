@@ -36,6 +36,7 @@
     "build:quickapp-webview-union": "uni build -p quickapp-webview-union"
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@dcloudio/uni-app": "3.0.0-4050720250324001",
     "@dcloudio/uni-app-harmony": "3.0.0-4050720250324001",
     "@dcloudio/uni-app-plus": "3.0.0-4050720250324001",
@@ -53,7 +54,7 @@
     "@dcloudio/uni-mp-xhs": "3.0.0-4050720250324001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-4050720250324001",
     "@dcloudio/uni-ui": "^1.5.7",
-    "vue": "^3.4.21",
+    "vue": "^3.2.45",
     "vue-i18n": "^9.1.9"
   },
   "devDependencies": {
@@ -62,9 +63,8 @@
     "@dcloudio/uni-cli-shared": "3.0.0-4050720250324001",
     "@dcloudio/uni-stacktracey": "3.0.0-4050720250324001",
     "@dcloudio/vite-plugin-uni": "3.0.0-4050720250324001",
-    "@vue/runtime-core": "^3.4.21",
-    "saas": "^1.0.0",
-    "sass": "^1.87.0",
-    "vite": "5.2.8"
+    "@vue/runtime-core": "^3.2.45",
+    "sass": "^1.56.1",
+    "vite": "^5.2.8"
   }
 }

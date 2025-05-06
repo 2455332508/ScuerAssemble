@@ -1,8 +1,10 @@
 <template>
   <view class="container">
     <view class="back-button" @click="goBack">
-      <uni-icons type="back" size="24" color="#000"></uni-icons>
+      <uni-icons type="back" size="60" color="#000"></uni-icons>
     </view>
+    <br>
+    <br>
     <text class="title">川大集合吧 - 规范与原则</text>
     
     <view class="section">
@@ -229,7 +231,7 @@ export default {
   position: relative;
   
   .back-button {
-    position: absolute;
+    position: fixed;
     top: 20rpx;
     left: 20rpx;
     padding: 20rpx;

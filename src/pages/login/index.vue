@@ -63,40 +63,44 @@ export default {
   },
   methods: {
     handleStudentLogin() {
-      if (!this.validateForm()) return
-      // 处理学生登录逻辑
-      console.log(this.account, this.password)
-      uni.request({
-        url: 'http://localhost:8080/student/login',
-        method: 'GET',
-        data: {
-          account: this.account,
-          password: this.password
-        },
-        success: (res) => {
-          if (res.data.code == 200) {
-            uni.showToast({
-              title: '登录成功',
-              icon: 'success'
-            })
-            // 登录成功后跳转到主页面
-            uni.navigateTo({
-              url: '../home/studentIndex'
-            })
-          } else {
-            uni.showToast({
-              title: '账号或密码错误',
-              icon: 'none'
-            })
-          }
-        },
-        fail: () => {
-          uni.showToast({
-            title: '网络错误，请稍后重试',
-            icon: 'none'
-          })
-        }
+      uni.navigateTo({
+        url: '../home/studentIndex'
       })
+
+      // if (!this.validateForm()) return
+      // // 处理学生登录逻辑
+      // console.log(this.account, this.password)
+      // uni.request({
+      //   url: 'http://localhost:8080/student/login',
+      //   method: 'GET',
+      //   data: {
+      //     account: this.account,
+      //     password: this.password
+      //   },
+      //   success: (res) => {
+      //     if (res.data.code == 200) {
+      //       uni.showToast({
+      //         title: '登录成功',
+      //         icon: 'success'
+      //       })
+      //       // 登录成功后跳转到主页面
+      //       uni.navigateTo({
+      //         url: '../home/studentIndex'
+      //       })
+      //     } else {
+      //       uni.showToast({
+      //         title: '账号或密码错误',
+      //         icon: 'none'
+      //       })
+      //     }
+      //   },
+      //   fail: () => {
+      //     uni.showToast({
+      //       title: '网络错误，请稍后重试',
+      //       icon: 'none'
+      //     })
+      //   }
+      // })
     },
     handleAdminLogin() {
       uni.navigateTo({

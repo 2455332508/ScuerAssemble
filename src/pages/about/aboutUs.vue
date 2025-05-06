@@ -124,8 +124,8 @@ export default {
       
       switch (key) {
         case 'back':
-          uni.navigateBack({
-            delta: 1,
+          uni.redirectTo({
+            url: '/pages/home/visitorIndex',
             fail: () => {
               uni.showToast({
                 title: '已经是第一页了',
@@ -142,24 +142,38 @@ export default {
           break
           
         case 'navigation':
-          uni.showToast({
-            title: '校内导航功能开发中',
-            icon: 'none'
-          })
+          uni.redirectTo({
+              url: '/pages/map/Map'
+            })
           break
       }
     },
     onSCUFeatureClick() {
-      uni.showToast({
+      try {
+        uni.redirectTo({
+            url: '/pages/about/scuView'
+          })
+        
+      } catch (error) {
+        uni.showToast({
         title: '川大风采功能开发中',
         icon: 'none'
       })
+      }
+      
     },
     onContactClick() {
-      uni.showToast({
+      try {
+        uni.redirectTo({
+            url: '/pages/about/contactUs'
+          })
+      } catch (error) {
+        uni.showToast({
         title: '联系我们功能开发中',
         icon: 'none'
       })
+      }
+      
     },
     async onSpecificationClick() {
       try {
@@ -177,21 +191,9 @@ export default {
     
     async onPrivacyClick() {
       try {
-        const response = await uni.request({
-          url: '/static/privacy.txt',
-          method: 'GET'
-        });
-        
-        if (response[1].statusCode === 200) {
-          this.popupTitle = '隐私协议';
-          this.popupText = response[1].data;
-          this.$refs.textPopup.open();
-        } else {
-          uni.showToast({
-            title: '获取隐私协议失败',
-            icon: 'none'
-          });
-        }
+        uni.redirectTo({
+            url: '/pages/about/privacy'
+          })
       } catch (error) {
         uni.showToast({
           title: '获取隐私协议失败',
@@ -312,6 +314,18 @@ export default {
     box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.05);
     border-radius: 30rpx 30rpx 0 0;
     padding-bottom: env(safe-area-inset-bottom);
+
+    .back-button {
+    position: fixed;
+    top: 20rpx;
+    left: 20rpx;
+    padding: 20rpx;
+    z-index: 100;
+    
+    &:active {
+      opacity: 0.7;
+    }
+  }
     
     .tab-item {
       display: flex;

@@ -222,8 +222,8 @@ export default {
       
       switch (key) {
         case 'back':
-          uni.navigateBack({
-            delta: 1,
+           uni.redirectTo({
+            url: '/pages/home/visitorIndex',
             fail: () => {
               uni.showToast({
                 title: '已经是第一页了',
@@ -240,9 +240,8 @@ export default {
           break
           
         case 'navigation':
-          uni.showToast({
-            title: '校内导航功能开发中',
-            icon: 'none'
+        uni.redirectTo({
+            url: '/pages/map/Map'
           })
           break
           
