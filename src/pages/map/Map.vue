@@ -18,8 +18,10 @@
 import AMapLocation from '@/components/AMapLocation.vue'
 
 const goBack = () => {
-  uni.redirectTo({
-    url: '/pages/home/visitorIndex'
+  // uni.redirectTo({
+  //   url: '/pages/home/visitorIndex'
+  uni.navigateBack({
+    delta: 1
   })
 }
 </script>

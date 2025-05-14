@@ -338,7 +338,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.map-container {
+.map-container {  
   width: 100%;
   height: 100vh;
   position: relative;
@@ -347,7 +347,7 @@ onUnmounted(() => {
 
 .map {
   width: 100%;
-  height: 100%;
+  height: 99%;
 }
 
 .search-box {

@@ -48,25 +48,6 @@
         <text v-if="errors.phone" class="error-text">{{ errors.phone }}</text>
       </view>
       
-      <!-- 验证码输入组 -->
-      <view class="input-group verification-group" :class="{ 'error': errors.verificationCode }">
-        <input 
-          class="input-item verification-input" 
-          type="text" 
-          v-model="formData.verificationCode" 
-          placeholder="请输入验证码"
-          @input="validateVerificationCode"
-        />
-        <button 
-          class="send-code-btn" 
-          :disabled="!canSendCode || countdown > 0"
-          @click="sendVerificationCode"
-        >
-          {{ countdown > 0 ? `${countdown}s后重试` : '发送验证码' }}
-        </button>
-        <text v-if="errors.verificationCode" class="error-text">{{ errors.verificationCode }}</text>
-      </view>
-      
       <!-- 密码输入 -->
       <view class="input-group" :class="{ 'error': errors.password }">
         <input 
@@ -105,7 +86,6 @@ export default {
         username: '',
         studentId: '',
         phone: '',
-        verificationCode: '',
         password: '',
         confirmPassword: ''
       },
@@ -113,19 +93,12 @@ export default {
         username: '',
         studentId: '',
         phone: '',
-        verificationCode: '',
         password: '',
         confirmPassword: ''
-      },
-      countdown: 0,
-      timer: null
+      }
     }
   },
   computed: {
-    canSendCode() {
-      return this.formData.phone && this.formData.studentId && 
-             !this.errors.phone && !this.errors.studentId
-    },
     isFormValid() {
       return !Object.values(this.errors).some(error => error) && 
              Object.values(this.formData).every(value => value)
@@ -159,15 +132,6 @@ export default {
         this.errors.phone = ''
       }
     },
-    validateVerificationCode() {
-      if (!this.formData.verificationCode) {
-        this.errors.verificationCode = '请输入验证码'
-      } else if (!/^\d{6}$/.test(this.formData.verificationCode)) {
-        this.errors.verificationCode = '请输入6位数字验证码'
-      } else {
-        this.errors.verificationCode = ''
-      }
-    },
     validatePassword() {
       if (!this.formData.password) {
         this.errors.password = '请输入密码'
@@ -189,48 +153,6 @@ export default {
         this.errors.confirmPassword = ''
       }
     },
-    startCountdown() {
-      this.countdown = 60
-      this.timer = setInterval(() => {
-        if (this.countdown > 0) {
-          this.countdown--
-        } else {
-          clearInterval(this.timer)
-        }
-      }, 1000)
-    },
-    sendVerificationCode() {
-      if (!this.canSendCode) return
-      
-      uni.request({
-        url: 'http://localhost:8080/student/register',
-        method: 'GET',
-        data: {
-          phone: this.formData.phone,
-          studentId: this.formData.studentId
-        },
-        success: (res) => {
-          if (res.data.code === 200) {
-            uni.showToast({
-              title: '验证码已发送',
-              icon: 'success'
-            })
-            this.startCountdown()
-          } else {
-            uni.showToast({
-              title: '手机号或学号有误，请重新输入',
-              icon: 'none'
-            })
-          }
-        },
-        fail: () => {
-          uni.showToast({
-            title: '网络错误，请稍后重试',
-            icon: 'none'
-          })
-        }
-      })
-    },
     handleNext() {
       if (!this.isFormValid) {
         uni.showToast({
@@ -240,22 +162,17 @@ export default {
         return
       }
       
+      // 将表单数据转换为URL参数
+      const registerData = encodeURIComponent(JSON.stringify({
+        username: this.formData.username,
+        studentId: this.formData.studentId,
+        phone: this.formData.phone,
+        password: this.formData.password
+      }))
       
-      // TODO: 这里添加跳转到下一个界面的逻辑
-
-      uni.showToast({
-        title: '注册信息验证成功',
-        icon: 'success'
-      })
       uni.navigateTo({
-              url: './info'
-            })
-
-    }
-  },
-  beforeDestroy() {
-    if (this.timer) {
-      clearInterval(this.timer)
+        url: `./info?data=${registerData}`
+      })
     }
   }
 }
@@ -295,39 +212,6 @@ export default {
         .input-item {
           border-color: #ff4d4f;
           box-shadow: 0 4rpx 12rpx rgba(255, 77, 79, 0.1);
-        }
-      }
-      
-      &.verification-group {
-        display: flex;
-        gap: 20rpx;
-        
-        .verification-input {
-          flex: 1;
-        }
-        
-        .send-code-btn {
-          width: 200rpx;
-          height: 90rpx;
-          line-height: 90rpx;
-          font-size: 24rpx;
-          background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
-          color: #fff;
-          text-align: center;
-          border-radius: 45rpx;
-          border: none;
-          box-shadow: 0 4rpx 12rpx rgba(33, 150, 243, 0.2);
-          transition: all 0.3s ease;
-          
-          &:active {
-            transform: scale(0.98);
-            box-shadow: 0 2rpx 8rpx rgba(33, 150, 243, 0.2);
-          }
-          
-          &:disabled {
-            background: #ccc;
-            box-shadow: none;
-          }
         }
       }
     }

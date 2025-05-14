@@ -1,0 +1,626 @@
+{
+  "type": "api",
+  "name": "SCU校园社区API文档",
+  "desc": "SCU校园社区小程序后端接口文档",
+  "list": [
+    {
+      "name": "用户认证",
+      "list": [
+        {
+          "name": "学生登录",
+          "path": "/student/login",
+          "method": "GET",
+          "req_query": [
+            {
+              "name": "account",
+              "desc": "学生账号",
+              "required": true
+            },
+            {
+              "name": "password",
+              "desc": "密码",
+              "required": true
+            }
+          ],
+          "res_body": {
+            "type": "json",
+            "properties": {
+              "code": {
+                "type": "number",
+                "description": "状态码，200表示成功"
+              },
+              "msg": {
+                "type": "string",
+                "description": "响应消息"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "description": "登录令牌"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "管理员登录",
+          "path": "/admin/login",
+          "method": "GET",
+          "req_query": [
+            {
+              "name": "account",
+              "desc": "管理员账号",
+              "required": true
+            },
+            {
+              "name": "password",
+              "desc": "密码",
+              "required": true
+            }
+          ],
+          "res_body": {
+            "type": "json",
+            "properties": {
+              "code": {
+                "type": "number",
+                "description": "状态码，200表示成功"
+              },
+              "msg": {
+                "type": "string",
+                "description": "响应消息"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "description": "登录令牌"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "学生注册",
+          "path": "/student/register",
+          "method": "POST",
+          "req_body_other": {
+            "type": "json",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "姓名"
+              },
+              "campus": {
+                "type": "string",
+                "description": "校区"
+              },
+              "building": {
+                "type": "string",
+                "description": "楼栋"
+              },
+              "unit": {
+                "type": "string",
+                "description": "单元"
+              },
+              "avatarUrl": {
+                "type": "string",
+                "description": "头像URL"
+              }
+            }
+          },
+          "res_body": {
+            "type": "json",
+            "properties": {
+              "code": {
+                "type": "number",
+                "description": "状态码，200表示成功"
+              },
+              "msg": {
+                "type": "string",
+                "description": "响应消息"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "用户信息",
+      "list": [
+        {
+          "name": "获取用户信息",
+          "path": "/student/userInfo",
+          "method": "GET",
+          "req_headers": [
+            {
+              "name": "Authorization",
+              "desc": "登录令牌",
+              "required": true
+            }
+          ],
+          "res_body": {
+            "type": "json",
+            "properties": {
+              "code": {
+                "type": "number",
+                "description": "状态码，200表示成功"
+              },
+              "msg": {
+                "type": "string",
+                "description": "响应消息"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "姓名"
+                  },
+                  "campus": {
+                    "type": "string",
+                    "description": "校区"
+                  },
+                  "building": {
+                    "type": "string",
+                    "description": "楼栋"
+                  },
+                  "unit": {
+                    "type": "string",
+                    "description": "单元"
+                  },
+                  "avatarUrl": {
+                    "type": "string",
+                    "description": "头像URL"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "帖子管理",
+      "list": [
+        {
+          "name": "获取帖子列表",
+          "path": "/posts/list",
+          "method": "GET",
+          "req_headers": [
+            {
+              "name": "Authorization",
+              "desc": "登录令牌",
+              "required": true
+            }
+          ],
+          "req_query": [
+            {
+              "name": "sortType",
+              "desc": "排序类型(hot/latest)",
+              "required": false
+            },
+            {
+              "name": "module",
+              "desc": "模块分类",
+              "required": false
+            },
+            {
+              "name": "lastTime",
+              "desc": "最后一条数据的时间戳",
+              "required": false
+            }
+          ],
+          "res_body": {
+            "type": "json",
+            "properties": {
+              "code": {
+                "type": "number",
+                "description": "状态码，200表示成功"
+              },
+              "msg": {
+                "type": "string",
+                "description": "响应消息"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "帖子ID"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "标题"
+                    },
+                    "content": {
+                      "type": "string",
+                      "description": "内容"
+                    },
+                    "images": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "图片URL列表"
+                    },
+                    "time": {
+                      "type": "string",
+                      "description": "发布时间"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "获取帖子详情",
+          "path": "/posts/detail/{id}",
+          "method": "GET",
+          "req_headers": [
+            {
+              "name": "Authorization",
+              "desc": "登录令牌",
+              "required": true
+            }
+          ],
+          "res_body": {
+            "type": "json",
+            "properties": {
+              "code": {
+                "type": "number",
+                "description": "状态码，200表示成功"
+              },
+              "msg": {
+                "type": "string",
+                "description": "响应消息"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "帖子ID"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "标题"
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "内容"
+                  },
+                  "images": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "图片URL列表"
+                  },
+                  "time": {
+                    "type": "string",
+                    "description": "发布时间"
+                  },
+                  "author": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "作者姓名"
+                      },
+                      "avatarUrl": {
+                        "type": "string",
+                        "description": "作者头像"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "发布帖子",
+          "path": "/posts/publish",
+          "method": "POST",
+          "req_headers": [
+            {
+              "name": "Authorization",
+              "desc": "登录令牌",
+              "required": true
+            }
+          ],
+          "req_body_other": {
+            "type": "json",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "标题"
+              },
+              "category": {
+                "type": "string",
+                "description": "分类"
+              },
+              "detail": {
+                "type": "string",
+                "description": "内容"
+              },
+              "images": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "图片URL列表"
+              },
+              "allowComment": {
+                "type": "boolean",
+                "description": "是否允许评论"
+              }
+            }
+          },
+          "res_body": {
+            "type": "json",
+            "properties": {
+              "code": {
+                "type": "number",
+                "description": "状态码，200表示成功"
+              },
+              "msg": {
+                "type": "string",
+                "description": "响应消息"
+              }
+            }
+          }
+        },
+        {
+          "name": "删除帖子",
+          "path": "/posts/delete/{id}",
+          "method": "DELETE",
+          "req_headers": [
+            {
+              "name": "Authorization",
+              "desc": "登录令牌",
+              "required": true
+            }
+          ],
+          "res_body": {
+            "type": "json",
+            "properties": {
+              "code": {
+                "type": "number",
+                "description": "状态码，200表示成功"
+              },
+              "msg": {
+                "type": "string",
+                "description": "响应消息"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "宿舍管理",
+      "list": [
+        {
+          "name": "获取我的宿舍信息",
+          "path": "/student/getDorm",
+          "method": "GET",
+          "req_headers": [
+            {
+              "name": "Authorization",
+              "desc": "登录令牌",
+              "required": true
+            }
+          ],
+          "res_body": {
+            "type": "json",
+            "properties": {
+              "code": {
+                "type": "number",
+                "description": "状态码，200表示成功"
+              },
+              "msg": {
+                "type": "string",
+                "description": "响应消息"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "campus": {
+                    "type": "string",
+                    "description": "校区"
+                  },
+                  "building": {
+                    "type": "string",
+                    "description": "楼栋"
+                  },
+                  "unit": {
+                    "type": "string",
+                    "description": "单元"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "获取宿舍列表",
+          "path": "/dorm/list",
+          "method": "GET",
+          "req_headers": [
+            {
+              "name": "Authorization",
+              "desc": "登录令牌",
+              "required": true
+            }
+          ],
+          "res_body": {
+            "type": "json",
+            "properties": {
+              "code": {
+                "type": "number",
+                "description": "状态码，200表示成功"
+              },
+              "msg": {
+                "type": "string",
+                "description": "响应消息"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "campus": {
+                      "type": "string",
+                      "description": "校区"
+                    },
+                    "building": {
+                      "type": "string",
+                      "description": "楼栋"
+                    },
+                    "unit": {
+                      "type": "string",
+                      "description": "单元"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "反馈管理",
+      "list": [
+        {
+          "name": "提交反馈",
+          "path": "/feedback/submit",
+          "method": "POST",
+          "req_headers": [
+            {
+              "name": "Authorization",
+              "desc": "登录令牌",
+              "required": true
+            }
+          ],
+          "req_body_other": {
+            "type": "json",
+            "properties": {
+              "content": {
+                "type": "string",
+                "description": "反馈内容"
+              },
+              "contact": {
+                "type": "string",
+                "description": "联系方式"
+              }
+            }
+          },
+          "res_body": {
+            "type": "json",
+            "properties": {
+              "code": {
+                "type": "number",
+                "description": "状态码，200表示成功"
+              },
+              "msg": {
+                "type": "string",
+                "description": "响应消息"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "关于我们",
+      "list": [
+        {
+          "name": "获取联系我们信息",
+          "path": "/about/concatUs",
+          "method": "GET",
+          "res_body": {
+            "type": "json",
+            "properties": {
+              "code": {
+                "type": "number",
+                "description": "状态码，200表示成功"
+              },
+              "msg": {
+                "type": "string",
+                "description": "响应消息"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "商务邮箱"
+                  },
+                  "wechat": {
+                    "type": "string",
+                    "description": "微信号"
+                  },
+                  "qrcode": {
+                    "type": "string",
+                    "description": "二维码图片URL"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "文件上传",
+      "list": [
+        {
+          "name": "上传文件",
+          "path": "/upload",
+          "method": "POST",
+          "req_body_type": "form",
+          "req_body_form": [
+            {
+              "name": "file",
+              "type": "file",
+              "required": true,
+              "desc": "要上传的文件"
+            }
+          ],
+          "res_body": {
+            "type": "json",
+            "properties": {
+              "code": {
+                "type": "number",
+                "description": "状态码，200表示成功"
+              },
+              "msg": {
+                "type": "string",
+                "description": "响应消息"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "description": "文件访问URL"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+} 

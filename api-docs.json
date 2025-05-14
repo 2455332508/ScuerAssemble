@@ -1,0 +1,582 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "校园平台API文档",
+    "description": "校园平台前后端接口文档",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/student/login": {
+      "get": {
+        "summary": "学生登录",
+        "description": "学生用户登录接口",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "query",
+            "description": "账号",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "密码",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "登录成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "登录成功"
+                },
+                "token": {
+                  "type": "string",
+                  "description": "登录令牌"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/login": {
+      "get": {
+        "summary": "管理员登录",
+        "description": "管理员用户登录接口",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "query",
+            "description": "账号",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "密码",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "登录成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "登录成功"
+                },
+                "token": {
+                  "type": "string",
+                  "description": "登录令牌"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/student/register": {
+      "get": {
+        "summary": "发送注册验证码",
+        "description": "发送注册验证码接口",
+        "parameters": [
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "手机号",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "studentId",
+            "in": "query",
+            "description": "学号",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "验证码发送成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "验证码已发送"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "学生注册",
+        "description": "学生用户注册接口",
+        "parameters": [
+          {
+            "name": "formData",
+            "in": "body",
+            "description": "注册信息",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "姓名"
+                },
+                "avatarUrl": {
+                  "type": "string",
+                  "description": "头像URL"
+                },
+                "campus": {
+                  "type": "string",
+                  "description": "校区"
+                },
+                "building": {
+                  "type": "string",
+                  "description": "楼栋"
+                },
+                "unit": {
+                  "type": "string",
+                  "description": "单元"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "注册成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "注册成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/upload": {
+      "post": {
+        "summary": "文件上传",
+        "description": "上传文件接口",
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "文件",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "上传成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "url": {
+                  "type": "string",
+                  "description": "文件URL"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/student/userInfo": {
+      "get": {
+        "summary": "获取用户信息",
+        "description": "获取当前登录用户信息",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "登录令牌",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "获取成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "用户ID"
+                    },
+                    "userName": {
+                      "type": "string",
+                      "description": "用户名"
+                    },
+                    "imageUrl": {
+                      "type": "string",
+                      "description": "头像URL"
+                    },
+                    "sex": {
+                      "type": "string",
+                      "description": "性别"
+                    },
+                    "age": {
+                      "type": "string",
+                      "description": "年龄"
+                    },
+                    "dorm": {
+                      "type": "string",
+                      "description": "宿舍信息"
+                    },
+                    "describtion": {
+                      "type": "string",
+                      "description": "个人描述"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/list": {
+      "get": {
+        "summary": "获取帖子列表",
+        "description": "获取帖子列表接口",
+        "parameters": [
+          {
+            "name": "sortType",
+            "in": "query",
+            "description": "排序类型(hot/new)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "module",
+            "in": "query",
+            "description": "模块类型(HELP/SECONDHAND/DATING/CAMPUS/NOTICE)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "lastTime",
+            "in": "query",
+            "description": "最后一条数据的时间",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "获取成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "帖子ID"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "标题"
+                      },
+                      "content": {
+                        "type": "string",
+                        "description": "内容"
+                      },
+                      "images": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "图片URL列表"
+                      },
+                      "avatar": {
+                        "type": "string",
+                        "description": "发帖人头像"
+                      },
+                      "username": {
+                        "type": "string",
+                        "description": "发帖人用户名"
+                      },
+                      "time": {
+                        "type": "string",
+                        "description": "发布时间"
+                      },
+                      "read_num": {
+                        "type": "integer",
+                        "description": "浏览量"
+                      },
+                      "isHot": {
+                        "type": "boolean",
+                        "description": "是否热门"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/publish": {
+      "post": {
+        "summary": "发布帖子",
+        "description": "发布新帖子接口",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "登录令牌",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "formData",
+            "in": "body",
+            "description": "帖子信息",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "description": "标题"
+                },
+                "category": {
+                  "type": "string",
+                  "description": "类目"
+                },
+                "detail": {
+                  "type": "string",
+                  "description": "详情内容"
+                },
+                "images": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "图片URL列表"
+                },
+                "allowComment": {
+                  "type": "boolean",
+                  "description": "是否允许评论"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "发布成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "发布成功"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/detail": {
+      "get": {
+        "summary": "获取帖子详情",
+        "description": "获取帖子详情及评论",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "帖子ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "获取成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "标题"
+                    },
+                    "content": {
+                      "type": "string",
+                      "description": "内容"
+                    },
+                    "images": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "图片URL列表"
+                    },
+                    "avatar": {
+                      "type": "string",
+                      "description": "发帖人头像"
+                    },
+                    "username": {
+                      "type": "string",
+                      "description": "发帖人用户名"
+                    },
+                    "time": {
+                      "type": "string",
+                      "description": "发布时间"
+                    },
+                    "likes": {
+                      "type": "integer",
+                      "description": "点赞数"
+                    },
+                    "views": {
+                      "type": "integer",
+                      "description": "浏览量"
+                    },
+                    "liked": {
+                      "type": "boolean",
+                      "description": "当前用户是否点赞"
+                    },
+                    "comments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "avatar": {
+                            "type": "string",
+                            "description": "评论人头像"
+                          },
+                          "username": {
+                            "type": "string",
+                            "description": "评论人用户名"
+                          },
+                          "text": {
+                            "type": "string",
+                            "description": "评论内容"
+                          },
+                          "time": {
+                            "type": "string",
+                            "description": "评论时间"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/about/concatUs": {
+      "get": {
+        "summary": "获取联系我们信息",
+        "description": "获取联系我们页面信息",
+        "responses": {
+          "200": {
+            "description": "获取成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string",
+                      "description": "商务邮箱"
+                    },
+                    "wechat": {
+                      "type": "string",
+                      "description": "微信号"
+                    },
+                    "qrcode": {
+                      "type": "string",
+                      "description": "二维码图片URL"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+} 

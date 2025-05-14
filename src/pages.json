@@ -32,9 +32,15 @@
             }
         },
         {
-            "path": "pages/home/studentIndex",
+            "path": "pages/student/studentIndex",
             "style": {
                 "navigationBarTitleText": "学生主页"
+            }
+        },
+        {
+            "path": "pages/post/detail",
+            "style": {
+                "navigationBarTitleText": "帖子详情"
             }
         },
         {
@@ -62,6 +68,12 @@
             }
         },
         {
+            "path": "pages/student/publish",
+            "style": {
+                "navigationBarTitleText": "学生发布"
+            }
+        },
+        {
             "path": "pages/about/scuView",
             "style": {
                 "navigationBarTitleText": "川大风采"
@@ -78,7 +90,32 @@
             "style": {
                 "navigationBarTitleText": "地图"
             }
+        },
+        {
+            "path": "pages/student/myIndex",
+            "style": {
+                "navigationBarTitleText": "学生端我的"
+            }
+        },
+        {
+            "path": "pages/student/dorm/dormIndex",
+            "style": {
+                "navigationBarTitleText": "围合"
+            }
+        },
+        {
+            "path": "pages/student/profile",
+            "style": {
+                "navigationBarTitleText": "个人信息"
+            }
+        },
+        {
+            "path": "pages/post/myposts",
+            "style": {
+                "navigationBarTitleText": "我的帖子"
+            }
         }
+       
     ],
 
     "globalStyle": {

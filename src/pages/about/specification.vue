@@ -207,12 +207,13 @@ export default {
   },
   methods: {
     goBack() {
-    //   uni.navigateBack({
-    //     delta: 1
-    //   })
-    uni.redirectTo({
-            url: '/pages/about/aboutUs'
-          })
+      uni.navigateBack({
+        delta: 1
+
+      })
+    // uni.redirectTo({
+    //         url: '/pages/about/aboutUs'
+    //       })
     }
   },
   mounted() {
